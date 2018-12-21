@@ -1,0 +1,193 @@
+spring:
+  application:
+    name: auth-centeral
+
+  ##
+  # CAS Web Application Http Encoding Configuration
+  #
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  ##
+  # Allow configuration classes to override bean definitions from Spring Boot
+  #
+  main:
+    allow-bean-definition-overriding: true
+
+  ##
+  # CAS Cloud Bus Configuration
+  #
+  cloud:
+    bus:
+      enabled: false
+
+  # Indicates that systemPropertiesOverride can be used. Set to false to prevent users from changing the default accidentally. Default true.
+    config:
+      allow-override: true
+
+  # External properties should override system properties.
+      override-system-properties: false
+
+  # When allowOverride is true, external properties should take lowest priority, and not override any existing property sources (including local config files).
+      override-none: false
+
+  # spring.cloud.bus.refresh.enabled: true
+  # spring.cloud.bus.env.enabled: true
+  # spring.cloud.bus.destination: CasCloudBus
+  # spring.cloud.bus.ack.enabled: true
+  # Endpoint Security Basic Authentication
+  security:
+    user:
+      name: casuser
+
+
+    ##
+    # CAS Thymeleaf View Configuration
+    #
+
+  thymeleaf:
+    encoding: UTF-8
+    cache: true
+    spring.thymeleaf.mode: HTML
+    template-resolver-order: 100
+
+  ##
+  # CAS AspectJ Configuration
+  #
+  aop:
+    auto: true
+    proxy-target-class: true
+
+
+##
+# CAS Web Application Embedded Server SSL Configuration
+#
+server:
+  ssl:
+    key-store: file:/Users/jet/Documents/jet.keystore
+    key-store-password: 111111
+    key-password: 111111
+    key-store-type: JKS
+    key-alias: localhost
+
+  ##
+  # CAS Web Application Embedded Server Configuration
+  #
+  port: 8443
+  servlet.context-path: /cas
+  context-path: /cas
+  max-http-header-size: 2097152
+  use-forward-headers: true
+  connection-timeout: 20
+  error.include-stacktrace: ALWAYS
+
+  compression.enabled: true
+  compression.mime-types: application/javascript,application/json,application/xml,text/html,text/xml,text/plain
+
+  ##
+  # CAS Web Application Embedded Tomcat Configuration
+  #
+#  tomcat:
+#    max-http-post-size: 2097152
+#    basedir: build/tomcat
+#    accesslog.enabled: true
+#    accesslog.pattern: '%t %a "%r" %s (%D ms)'
+#    accesslog.suffix: .log
+#    min-spare-threads: 10
+#    max-threads: 200
+#    port-header: X-Forwarded-Port
+#    protocol-header: X-Forwarded-Proto
+#    protocol-header-https-value: https
+#    remote-ip-header: X-FORWARDED-FOR
+#    uri-encoding: UTF-8
+#    additional-tld-skip-patterns: '*.jar'
+
+  ##
+  # CAS Web Application Session Configuration
+  #
+
+  servlet:
+    session:
+      timeout: 30
+      cookie:
+        http-only: true
+      tracking-modes: COOKIE
+
+  ##
+  # CAS Log4j Configuration
+  #
+  # logging.config: file:/etc/cas/log4j2.xml
+    context-parameters:
+      isLog4jAutoInitializationDisabled: true
+
+
+  ##
+  # CAS Web Application Endpoints Security
+  #
+  management:
+    endpoints:
+      enabled-by-default: true
+      shutdown.enabled: false
+      restart.enabled: false
+
+      web.base-path: /actuator
+      web.exposure.include: info,health,status,configurationMetadata
+
+  # management.endpoints.web.exposure.include: *
+  # management.endpoints.web.path-mapping.health: status
+  # management.endpoint.health.show-details: when_authorized
+
+    server.add-application-context-header: false
+
+
+  # spring.security.user.password: 
+  # spring.security.user.roles: 
+
+  # Define a CAS-specific "WARN" status code and its order
+    health.status.order: WARN,DOWN,OUT_OF_SERVICE,UNKNOWN,UP
+
+
+
+
+#  ##
+#  # CAS Metrics Configuration
+#  #
+#  management.metrics.web.server.auto-time-requests: true
+#
+#  management.metrics.export.atlas.enabled: false
+#  management.metrics.export.datadog.enabled: false
+#  management.metrics.export.ganglia.enabled: false
+#  management.metrics.export.graphite.enabled: false
+#  management.metrics.export.influx.enabled: false
+#  management.metrics.export.jmx.enabled: false
+#  management.metrics.export.newrelic.enabled: false
+#  management.metrics.export.prometheus.enabled: false
+#  management.metrics.export.signalfx.enabled: false
+#  management.metrics.export.statsd.enabled: false
+#  management.metrics.export.wavefront.enabled: false
+#  management.metrics.export.simple.enabled: true
+#  management.metrics.binders.logback.enabled: false
+#  management.metrics.binders.files.enabled: true
+#  management.metrics.binders.processor.enabled: true
+#  management.metrics.binders.uptime.enabled: true
+
+
+
+  ##
+  # CAS View Settings
+  #
+cas:
+  view:
+    cas2:
+      v3ForwardCompatible: true
+
+  ##
+  # CAS Authentication Credentials
+  #
+  authn:
+    accept:
+      users: casuser::Mellon
+      name: Static Credentials
+
